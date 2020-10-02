@@ -113,7 +113,17 @@ node* createTreeFromTrav(int *in,int *pre,int s,int e){
     return root;
 }
 
-
+void right_view(node *root, int level,int &maxlevel){
+    if(root == NULL){
+        return ;
+    }
+    if(maxlevel<level){
+        cout << root -> data <<" ";
+        maxlevel = level;
+    }
+    right_view(root->right,level+1,maxlevel);
+    right_view(root->left,level+1,maxlevel);
+}
 
 int main(){ 
     int in[] = {3,2,8,4,1,6,7,5};
@@ -122,7 +132,12 @@ int main(){
 
     node*root = createTreeFromTrav(in,pre,0,n-1);
     bfs(root);
-
+    // for right view
+    /*
+    int maxlevel = -1;
+    bfs(root);
+    right_view(root,0,maxlevel);
+    */
     
 
 
